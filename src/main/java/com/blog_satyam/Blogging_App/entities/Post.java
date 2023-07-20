@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -36,6 +38,7 @@ public class Post {
     @ManyToOne
     private User user;
 
-
+    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
+    private List<Comment> comments = new ArrayList<>();
 }
 

@@ -2,6 +2,7 @@ package com.blog_satyam.Blogging_App.exceptions;
 
 
 import com.blog_satyam.Blogging_App.payloads.ApiResponse;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -23,6 +24,7 @@ public class GlobalExceptionHandler {
          return new ResponseEntity<>(apiResponse, HttpStatus.NOT_FOUND);
     }
 
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String,String>> methodArgumentNotValid(MethodArgumentNotValidException ex){
         Map<String,String> resp = new HashMap<>();
@@ -39,4 +41,12 @@ public class GlobalExceptionHandler {
         String message = ex.getMessage();
         return new ResponseEntity<>("HttpRequest lacks something "+message, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(ApiException.class)
+    public ResponseEntity<ApiResponse> handleApiException(ApiException ex){
+        String message = ex.getMessage();
+        ApiResponse apiResponse = new ApiResponse(message,false);
+        return new ResponseEntity<>(apiResponse,HttpStatus.BAD_REQUEST);
+    }
+
 }
