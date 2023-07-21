@@ -49,4 +49,10 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(apiResponse,HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex){
+        String message = ex.getMessage();
+        return new ResponseEntity<>("Email already registered",HttpStatus.ALREADY_REPORTED);
+    }
+
 }
