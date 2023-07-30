@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserServices {
     @Override
     public UserDto registerNewUser(UserDto userDto) {
         Optional<User> existUser = userRepo.findByEmail(userDto.getEmail());
-        if(existUser.get() != null)    throw new  IllegalArgumentException();
+        if(existUser.isPresent())    throw new  IllegalArgumentException();
         User user = this.modelMapper.map(userDto,User.class);
 
         //encoded the password

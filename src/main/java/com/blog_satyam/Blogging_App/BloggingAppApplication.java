@@ -1,5 +1,6 @@
 package com.blog_satyam.Blogging_App;
 
+
 import com.blog_satyam.Blogging_App.config.AppConstants;
 import com.blog_satyam.Blogging_App.entities.Role;
 import com.blog_satyam.Blogging_App.repositories.RoleRepo;
@@ -16,41 +17,42 @@ import java.util.List;
 @SpringBootApplication
 public class BloggingAppApplication implements CommandLineRunner {
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-	@Autowired
-	private RoleRepo roleRepo;
+    @Autowired
+    private RoleRepo roleRepo;
 
-	public static void main(String[] args) {
-		SpringApplication.run(BloggingAppApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(BloggingAppApplication.class, args);
+    }
 
-	@Bean	public ModelMapper modelMapper(){
-		return new ModelMapper();
-	}
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
 
-	@Override
-	public void run(String... args) throws Exception {
-		try {
-			Role role = new Role();
-			role.setId(AppConstants.ADMIN_USER);
-			role.setName("ADMIN_USER");
+    @Override
+    public void run(String... args) throws Exception {
+        try {
+            Role role = new Role();
+            role.setId(AppConstants.ADMIN_USER);
+            role.setName("ADMIN_USER");
 
-			Role role1 = new Role();
-			role1.setId(AppConstants.NORMAL_USER);
-			role1.setName("NORMAL_USER");
+            Role role1 = new Role();
+            role1.setId(AppConstants.NORMAL_USER);
+            role1.setName("NORMAL_USER");
 
-			List<Role> roles =List.of(role,role1);
-			List<Role> result = this.roleRepo.saveAll(roles);
+            List<Role> roles = List.of(role, role1);
+            List<Role> result = this.roleRepo.saveAll(roles);
 
-			result.forEach(r->{
-				System.out.println(r.getName());
-			});
-		}catch (Exception e){
-			e.printStackTrace();
-		}
-	}
+            result.forEach(r -> {
+                System.out.println(r.getName());
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }
