@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserServices {
                 .orElseThrow(()->new ConfigDataResourceNotFoundException("User ","id ",userId));
         user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
-        user.setPassword(userDto.getPassword());
+        user.setPassword(this.passwordEncoder.encode(userDto.getPassword()));
         user.setAbout(userDto.getAbout());
 
         User updateUser = this.userRepo.save(user);

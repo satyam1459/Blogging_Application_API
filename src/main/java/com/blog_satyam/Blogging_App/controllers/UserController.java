@@ -20,13 +20,6 @@ public class UserController {
     @Autowired
     private UserServices userServices;
 
-    //post-create user
-    @PostMapping("/")
-    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto){
-        UserDto createUserDto = this.userServices.createUser(userDto);
-        return new ResponseEntity<>(createUserDto, HttpStatus.CREATED);
-    }
-
     //put-update user
     @PutMapping("/{userId}")
     public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto, @PathVariable Integer userId){

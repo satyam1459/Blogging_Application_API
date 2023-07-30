@@ -1,13 +1,11 @@
 package com.blog_satyam.Blogging_App.payloads;
 
-import com.blog_satyam.Blogging_App.entities.Role;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
@@ -33,5 +31,6 @@ public class UserDto {
 	@NotBlank
 	private String about;
 
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private Set<RoleDto> roles = new HashSet<>();
 }

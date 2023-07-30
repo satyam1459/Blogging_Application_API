@@ -3,6 +3,7 @@ package com.blog_satyam.Blogging_App;
 
 import com.blog_satyam.Blogging_App.config.AppConstants;
 import com.blog_satyam.Blogging_App.entities.Role;
+import com.blog_satyam.Blogging_App.exceptions.GlobalExceptionHandler;
 import com.blog_satyam.Blogging_App.repositories.RoleRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +11,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
 @SpringBootApplication
+@Import({GlobalExceptionHandler.class})
 public class BloggingAppApplication implements CommandLineRunner {
 
     @Autowired
